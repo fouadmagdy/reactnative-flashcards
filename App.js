@@ -31,7 +31,6 @@ export default class App extends React.Component {
         <View style={styles.container}>
           <FlashcardStatusBar
             backgroundColor="black"
-            barStyle="light-content"
           />
           <Navigation />
         </View>

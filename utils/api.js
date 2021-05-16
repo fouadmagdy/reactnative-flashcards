@@ -3,27 +3,27 @@ import { decks } from './_DATA';
 
 const ASYNC_STORAGE_KEY = 'fouadmagdy';
 
-export function getData() {
+export function getAllData() {
     return decks;
 }
 
-function formatDeckResults(results) {
+function formatResults(results) {
     return results === null ? decks : JSON.parse(results);
 }
 
-export function getDecksOld() {
-    return AsyncStorage.getItem(ASYNC_STORAGE_KEY).then(formatDeckResults);
+export function getDecksPrev() {
+    return AsyncStorage.getItem(ASYNC_STORAGE_KEY).then(formatResults);
 }
 
 export async function getDecks() {
     try {
-        const storeResults = await AsyncStorage.getItem(ASYNC_STORAGE_KEY);
+        const deckResults = await AsyncStorage.getItem(ASYNC_STORAGE_KEY);
 
-        if (storeResults === null) {
+        if (deckResults === null) {
             AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(decks));
         }
 
-        return storeResults === null ? decks : JSON.parse(storeResults);
+        return deckResults === null ? decks : JSON.parse(deckResults);
     } catch (err) {
         console.log(err);
     }
@@ -31,9 +31,25 @@ export async function getDecks() {
 
 export async function getDeck(id) {
     try {
-        const storeResults = await AsyncStorage.getItem(ASYNC_STORAGE_KEY);
+        const deckResults = await AsyncStorage.getItem(ASYNC_STORAGE_KEY);
 
-        return JSON.parse(storeResults)[id];
+        return JSON.parse(deckResults)[id];
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export async function saveDeckTitleAsyncStorage(title) {
+    try {
+        await AsyncStorage.mergeItem(
+            ASYNC_STORAGE_KEY,
+            JSON.stringify({
+                [title]: {
+                    title,
+                    questions: []
+                }
+            })
+        );
     } catch (err) {
         console.log(err);
     }
@@ -48,22 +64,6 @@ export async function addCardToDeckAsyncStorage(title, card) {
             JSON.stringify({
                 [title]: {
                     questions: [...deck.questions].concat(card)
-                }
-            })
-        );
-    } catch (err) {
-        console.log(err);
-    }
-}
-
-export async function saveDeckTitleAsyncStorage(title) {
-    try {
-        await AsyncStorage.mergeItem(
-            ASYNC_STORAGE_KEY,
-            JSON.stringify({
-                [title]: {
-                    title,
-                    questions: []
                 }
             })
         );
