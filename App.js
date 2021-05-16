@@ -1,21 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+import { Provider } from 'react-redux';
+import reducer from './reducers/index';
+import Constants from 'expo-constants';
+import { createAppContainer } from "react-navigation";
+import AppNavigator from './stacks/AppNavigation';
 
-export default function App() {
+function FlashcardStatusBar({ backgroundColor, ...props }) {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
     </View>
   );
+}
+
+const store = createStore(
+  reducer,
+  applyMiddleware(thunk, logger)
+);
+const Navigation = createAppContainer(AppNavigator);
+
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <View style={styles.container}>
+          <FlashcardStatusBar
+            backgroundColor="black"
+            barStyle="light-content"
+          />
+          <Navigation />
+        </View>
+      </Provider>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    backgroundColor: '#ddd'
+  }
 });
