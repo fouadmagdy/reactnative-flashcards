@@ -5,6 +5,7 @@ import { View, StyleSheet } from 'react-native';
 import Deck from './Deck';
 import { removeDeck } from '../actions/index';
 import { gray, green, white } from '../utils/colors';
+import { removeDeckAsyncStorage } from '../utils/api';
 
 export class DeckDetail extends Component {
 
@@ -13,6 +14,7 @@ export class DeckDetail extends Component {
     }
     handleDelete = id => {
         this.props.removeDeck(id);
+        removeDeckAsyncStorage(id)
         this.props.navigation.goBack();
     };
     render() {

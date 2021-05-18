@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Text, View, StyleSheet, TextInput } from 'react-native';
 import { gray, green, white } from '../utils/colors';
 import { addDeck } from '../actions/index';
+import { saveDeckTitleAsyncStorage } from '../utils/api';
 import BtnContainer from './BtnContainer';
 
 export class AddDeck extends Component {
@@ -17,6 +18,7 @@ export class AddDeck extends Component {
         const { addDeck, navigation } = this.props;
 
         addDeck(this.state.text);
+        saveDeckTitleAsyncStorage(this.state.text);
         this.setState(() => ({ text: '' }));
         navigation.goBack();
     };

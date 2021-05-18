@@ -4,6 +4,7 @@ import BtnContainer from './BtnContainer';
 import { gray, black } from '../utils/colors';
 import { connect } from 'react-redux';
 import { addCard } from '../actions/index';
+import { addCardToDeckAsyncStorage } from '../utils/api';
 
 export class AddCard extends Component {
 
@@ -25,6 +26,7 @@ export class AddCard extends Component {
         };
 
         addCard(title, card);
+        addCardToDeckAsyncStorage(title, card);
         this.setState({ question: '', answer: '' });
         navigation.goBack();
     };
