@@ -30,7 +30,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <View style={styles.container}>
           <FlashcardStatusBar
-            backgroundColor="black"
+            backgroundColor="purple"
           />
           <Navigation />
         </View>

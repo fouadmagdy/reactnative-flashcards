@@ -40,7 +40,7 @@ class Quiz_io extends Component {
         }
         this.setState(
             prevState => ({
-                answered: prevState.answered.map((val, idx) => (page === idx ? 1 : val))
+                answered: prevState.answered.map((val, index) => (page === index ? 1 : val))
             }),
             () => {
                 const { correct, incorrect, questionCount } = this.state;
@@ -137,11 +137,11 @@ class Quiz_io extends Component {
                 }}
                 horizontal={true}
             >
-                {questions.map((question, idx) => (
-                    <View style={styles.pageContainer} key={idx}>
+                {questions.map((question, index) => (
+                    <View style={styles.pageContainer} key={index}>
                         <View style={styles.mt_20}>
                             <Text style={styles.font_25}>
-                                {idx + 1} / {questions.length}
+                                {index + 1} / {questions.length}
                             </Text>
                         </View>
                         <View style={[styles.mt_20, styles.questionContainer]}>
@@ -174,15 +174,15 @@ class Quiz_io extends Component {
                         <View>
                             <BtnContainer
                                 btnStyle={{ backgroundColor: green, borderColor: white }}
-                                onPress={() => this.handleAnswer(answer.CORRECT, idx)}
-                                disabled={this.state.answered[idx] === 1}
+                                onPress={() => this.handleAnswer(answer.CORRECT, index)}
+                                disabled={this.state.answered[index] === 1}
                             >
                                 Correct
               </BtnContainer>
                             <BtnContainer
                                 btnStyle={{ backgroundColor: red, borderColor: white }}
-                                onPress={() => this.handleAnswer(answer.INCORRECT, idx)}
-                                disabled={this.state.answered[idx] === 1}
+                                onPress={() => this.handleAnswer(answer.INCORRECT, index)}
+                                disabled={this.state.answered[index] === 1}
                             >
                                 Incorrect
               </BtnContainer>

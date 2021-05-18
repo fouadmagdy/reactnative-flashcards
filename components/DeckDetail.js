@@ -67,8 +67,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state, { navigation }) => {
-    const title = navigation.getParam('title', 'undefined');
-    const deck = state[title];
+    const DeskTitle = navigation.getParam('title', 'undefined');
+    const deck = state[DeskTitle];
 
     return {
         deck

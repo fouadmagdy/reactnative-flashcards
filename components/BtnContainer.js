@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
-import { white, disabledGray, gray } from '../utils/colors';
+import { white, disabledGray, gray, black } from '../utils/colors';
 
 export default function BtnContainer({
     buttonStyle = {},
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         width: 150,
         height: 60,
         borderWidth: 1,
-        backgroundColor: 'red',
+        backgroundColor: black,
         borderRadius: 5,
         justifyContent: `center`,
         alignItems: `center`,

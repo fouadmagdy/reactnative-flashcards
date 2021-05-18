@@ -24,8 +24,8 @@ export async function getDecks() {
         }
 
         return deckResults === null ? decks : JSON.parse(deckResults);
-    } catch (err) {
-        console.log(err);
+    } catch (error) {
+        console.log(error);
     }
 }
 
@@ -34,8 +34,8 @@ export async function getDeck(id) {
         const deckResults = await AsyncStorage.getItem(ASYNC_STORAGE_KEY);
 
         return JSON.parse(deckResults)[id];
-    } catch (err) {
-        console.log(err);
+    } catch (error) {
+        console.log(error);
     }
 }
 
@@ -50,8 +50,8 @@ export async function saveDeckTitleAsyncStorage(title) {
                 }
             })
         );
-    } catch (err) {
-        console.log(err);
+    } catch (error) {
+        console.log(error);
     }
 }
 
@@ -67,8 +67,8 @@ export async function addCardToDeckAsyncStorage(title, card) {
                 }
             })
         );
-    } catch (err) {
-        console.log(err);
+    } catch (error) {
+        console.log(error);
     }
 }
 
@@ -79,8 +79,8 @@ export async function removeDeckAsyncStorage(key) {
         data[key] = undefined;
         delete data[key];
         AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(data));
-    } catch (err) {
-        console.log(err);
+    } catch (error) {
+        console.log(error);
     }
 }
 
@@ -88,7 +88,7 @@ export async function removeDeckAsyncStorage(key) {
 export async function resetDecks() {
     try {
         await AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(decks));
-    } catch (err) {
-        console.log(err);
+    } catch (error) {
+        console.log(error);
     }
 }
