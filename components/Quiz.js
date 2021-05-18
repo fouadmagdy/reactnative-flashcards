@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Quiz_io from './Quiz_io';
+import { setNotification, clearNotification } from '../utils/Notification';
 
 export class Quiz extends Component {
 
@@ -9,6 +10,11 @@ export class Quiz extends Component {
             title: `${title} Quiz`
         };
     };
+
+    componentDidMount() {
+        clearNotification().then(setNotification);
+    }
+
     render() {
         const { navigation } = this.props;
         const title = navigation.getParam('title', '');

@@ -8,6 +8,7 @@ import reducer from './reducers/index';
 import Constants from 'expo-constants';
 import { createAppContainer } from "react-navigation";
 import AppNavigator from './stacks/AppNavigation';
+import { setNotification } from './utils/Notification';
 
 function FlashcardStatusBar({ backgroundColor, ...props }) {
   return (
@@ -25,6 +26,11 @@ const Navigation = createAppContainer(AppNavigator);
 
 
 export default class App extends React.Component {
+
+  componentDidMount() {
+    setNotification();
+  }
+
   render() {
     return (
       <Provider store={store}>

@@ -83,12 +83,3 @@ export async function removeDeckAsyncStorage(key) {
         console.log(error);
     }
 }
-
-
-export async function resetDecks() {
-    try {
-        await AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(decks));
-    } catch (error) {
-        console.log(error);
-    }
-}

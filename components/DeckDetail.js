@@ -34,7 +34,7 @@ export class DeckDetail extends Component {
                         Add Card
           </BtnContainer>
                     <BtnContainer
-                        btnStyle={{ backgroundColor: green, borderColor: white }}
+
                         textStyle={{ color: white }}
                         onPress={() =>
                             this.props.navigation.navigate('Quiz', { title: deck.title })
