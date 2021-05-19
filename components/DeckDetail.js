@@ -4,7 +4,7 @@ import BtnContainer from './BtnContainer';
 import { View, StyleSheet } from 'react-native';
 import Deck from './Deck';
 import { removeDeck } from '../actions/index';
-import { gray, green, white } from '../utils/colors';
+import { gray, white } from '../utils/colors';
 import { removeDeckAsyncStorage } from '../utils/api';
 
 export class DeckDetail extends Component {

@@ -3,17 +3,7 @@ import { decks } from './_DATA';
 
 const ASYNC_STORAGE_KEY = 'fouadmagdy';
 
-export function getAllData() {
-    return decks;
-}
 
-function formatResults(results) {
-    return results === null ? decks : JSON.parse(results);
-}
-
-export function getDecksPrev() {
-    return AsyncStorage.getItem(ASYNC_STORAGE_KEY).then(formatResults);
-}
 
 export async function getDecks() {
     try {
